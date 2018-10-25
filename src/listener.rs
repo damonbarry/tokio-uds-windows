@@ -4,12 +4,11 @@ use tokio_reactor::{Handle, PollEvented};
 
 use futures::{Async, Poll};
 use mio::Ready;
-use mio_uds;
+use mio_uds_windows as mio_uds;
+use mio_uds_windows::net::{self, SocketAddr};
 
 use std::fmt;
 use std::io;
-use std::os::unix::io::{AsRawFd, RawFd};
-use std::os::unix::net::{self, SocketAddr};
 use std::path::Path;
 
 /// A Unix socket which can accept connections from other Unix sockets.
@@ -136,11 +135,5 @@ impl UnixListener {
 impl fmt::Debug for UnixListener {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         self.io.get_ref().fmt(f)
-    }
-}
-
-impl AsRawFd for UnixListener {
-    fn as_raw_fd(&self) -> RawFd {
-        self.io.get_ref().as_raw_fd()
     }
 }
