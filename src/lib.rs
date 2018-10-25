@@ -9,7 +9,6 @@ extern crate bytes;
 #[macro_use]
 extern crate futures;
 extern crate iovec;
-extern crate libc;
 extern crate log;
 extern crate mio;
 extern crate mio_uds_windows;
